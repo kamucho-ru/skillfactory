@@ -57,18 +57,34 @@ WHERE status = 'Cancelled';
 SELECT count(*)
 FROM dst_project.aircrafts
 WHERE model like '%Boeing%';
-
+UNION ALL
 -- Answer: 3
 
 SELECT count(*)
 FROM dst_project.aircrafts
 WHERE model like '%Sukhoi Superjet%';
-
+UNION ALL
 -- Answer: 1
 
 SELECT count(*)
 FROM dst_project.aircrafts
 WHERE model like '%Airbus%';
+
+-----------------
+-- Another option
+
+SELECT 'Boeing' aircraft, count(*)
+FROM dst_project.aircrafts a
+WHERE a.model LIKE 'Boeing%'
+UNION ALL
+SELECT 'Sukhoi Superjet-100', count(*)
+FROM dst_project.aircrafts a
+WHERE a.model LIKE 'Sukhoi%'
+UNION ALL
+SELECT 'Airbus', count(*)
+FROM dst_project.aircrafts a
+WHERE a.model LIKE 'Airbus%'
+
 
 -- Answer: 3
 ------------
